@@ -60,6 +60,7 @@ Project Setup
 1. Copy (or link) all the .java files into your project src (under the appropriate com.polychrom.cordova package).
 2. Copy accountmanager.js into your cordova app's www directory
 3. Add `<script charset="utf-8" src="accountmanager.js"></script>` to your cordova app's HTML.
+4. Copy (or link) authenticator.xml to your project's res/xml/ folder.
 
 ### Authenticator Service
 
@@ -72,12 +73,6 @@ To register the AuthenticatorService with your application, the following will n
 		</intent-filter>
 		<meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator" />
 	</service>
-
-### AccountAuthenticator
-
-The plugin's AccountAuthenticator needs to be registered with android.
-
-To do this, copy authenticator.xml to your project's res/xml/ folder.
 
 ### Permissions
 
