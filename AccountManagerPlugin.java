@@ -64,7 +64,7 @@ public class AccountManagerPlugin extends CordovaPlugin
 
 		if("getAccountsByType".equals(action))
 		{
-			Account[] account_list = manager.getAccountsByType(args.getString(0));
+			Account[] account_list = manager.getAccountsByType(args.isNull(0)? null : args.getString(0));
 			JSONArray result = new JSONArray();
 			
 			for(Account account: account_list)

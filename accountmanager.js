@@ -77,20 +77,20 @@ AccountManager.prototype.getPassword = function(account, callback)
 		'AccountManager', 'getPassword', [account._index]);
 };
 
-AccountManager.prototype.setUserData = function(account, userdata, callback)
+AccountManager.prototype.setUserData = function(account, key, value, callback)
 {
 	return cordova.exec(
 		function() { callback(); },
 		callback,
-		'AccountManager', 'setUserData', [account._index, userdata]);
+		'AccountManager', 'setUserData', [account._index, key, value]);
 };
 
-AccountManager.prototype.getUserData = function(account, callback)
+AccountManager.prototype.getUserData = function(account, key, callback)
 {
 	return cordova.exec(
 		function(result) { callback(undefined, result.value); },
 		callback,
-		'AccountManager', 'getUserData', [account._index]);
+		'AccountManager', 'getUserData', [account._index, key]);
 };
 
 if(!window.plugins) window.plugins = {};
