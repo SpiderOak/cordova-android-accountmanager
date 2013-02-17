@@ -1,0 +1,16 @@
+.DS_Store
+default.properties
+Example/bin
+Example/gen
+Example/libs
+Example/local.properties
+Example/proguard.cfg
+Example/proguard-project.txt
+.metadata
+Thumbs.db
+Desktop.ini
+*.tmp
+*.bak
+*.swp
+*.class
+*.jar

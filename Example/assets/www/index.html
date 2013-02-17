@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AccountManagerExample</title>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script src="cordova-2.3.0.js"></script>
+        <script src="accountmanager.js"></script>
+        <script>
+        	function onDeviceReady()
+        	{
+        		var am = window.plugins.accountmanager;
+        		
+        		am.getAccountsByType(null, function(error, accounts)
+        		{
+        			if(error)
+        			{
+        				document.body.appendChild(document.createTextNode('ERROR: ' + error));
+        				return;
+        			}
+        			else if(!accounts || !accounts.length)
+        			{
+        				document.body.appendChild(document.createTextNode('This device has no accounts'));
+        				return;
+        			}
+        			
+        			var list = document.getElementById('list');
+        			list.appendChild(document.createTextNode('#' + accounts.length + ' ACCOUNTS ON THIS DEVICE'));
+        			accounts.forEach(function(account)
+        			{
+        				am.getUserData(account, 'email', function(error, email)
+        				{
+							var item = document.createElement('LI');
+							
+        					if(error)
+        					{
+        						item.innerHTML = 'ERROR: ' + error;
+        					}
+        					else
+        					{
+								item.innerHTML = '(' + account.type + ') ' + account.name;
+	        					if(email)
+	        					{
+	        						item.innerHTML += ' - ' + email;
+	        					}
+        					}
+
+        					list.appendChild(item);
+        				});
+        			});
+        		});
+        	}
+        </script>
+    </head>
+    <body onload="document.addEventListener('deviceready', onDeviceReady, false);">
+        <div class="app">
+            <h1>AccountManager Example</h1>
+            <ul id="list">
+            </ul>
+        </div>
+    </body>
+</html>
