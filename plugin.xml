@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="com.polychrom.cordova.AccountManager"
+  version="0.1.0">
+
+  <name>Cordova Account Manager Plugin</name>
+
+  <asset src="www/accountmanager.js" target="accountmanager.js" />
+
+  <!-- android -->
+  <platform name="android">
+
+    <!-- Cordova 2.x.x -->
+    <config-file target="res/xml/config.xml" parent="/cordova/plugins">
+      <plugin name="AccountManager"
+        value="com.polychrom.cordova.AccountManagerPlugin"/>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <service android:name="com.polychrom.cordova.AuthenticatorService"
+        android:exported="false">
+        <intent-filter>
+          <action android:name="android.accounts.AccountAuthenticator" />
+        </intent-filter>
+        <meta-data android:name="android.accounts.AccountAuthenticator"
+          android:resource="@xml/authenticator" />
+      </service>   
+    </config-file>
+
+    <source-file src="src/android/AccountManagerPlugin.java"
+      target-dir="src/com/polychrom/cordova/" />
+    <source-file src="src/android/Authenticator.java"
+      target-dir="src/com/polychrom/cordova/" />
+    <source-file src="src/android/AuthenticatorService.java"
+      target-dir="src/com/polychrom/cordova/" />
+    <source-file src="src/android/authenticator.xml" target-dir="res/xml/" />
+  </platform>
+</plugin>

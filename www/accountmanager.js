@@ -95,3 +95,4 @@ AccountManager.prototype.getUserData = function(account, key, callback)
 
 if(!window.plugins) window.plugins = {};
 window.plugins.accountmanager = new AccountManager();
+
