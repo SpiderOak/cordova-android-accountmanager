@@ -15,7 +15,7 @@ Basic Usage (Explicit account handling)
 	var am = window.plugins.accountmanager;
 
 	// Add account explicitly
-	am.addAccountExplicitly('MyAccountType', 'bob', 'passwordbob', function(error, bob)
+	am.addAccountExplicitly('MyAccountType', 'bob', 'passwordbob', null, function(error, bob)
 	{
 		// bob.name = 'bob'
 		// bob.type = 'MyAccountType'
