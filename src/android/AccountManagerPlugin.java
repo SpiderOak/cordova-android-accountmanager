@@ -7,6 +7,7 @@ package com.polychrom.cordova;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 
 import org.apache.cordova.api.CallbackContext;
@@ -15,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.R.string;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerFuture;
@@ -108,18 +110,14 @@ public class AccountManagerPlugin extends CordovaPlugin
 				Bundle userdata = new Bundle();
 				if(!args.isNull(3))
 				{
-					JSONArray userdata_array = args.getJSONArray(3);
-					if(userdata_array != null)
+					JSONObject userdata_json = args.getJSONObject(3);
+					if(userdata_json != null)
 					{
-						for(int i = 0; i < userdata_array.length(); ++i)
+						Iterator<String> keys = userdata_json.keys();
+						while(keys.hasNext())
 						{
-							JSONObject keyval = userdata_array.getJSONObject(i);
-							if(keyval == null || keyval.isNull("key") || keyval.isNull("value"))
-							{
-								continue;
-							}
-	
-							userdata.putString(keyval.getString("key"), keyval.getString("value"));
+							String key = keys.next();
+							userdata.putString(key, userdata_json.getString(key));
 						}
 					}
 				}
